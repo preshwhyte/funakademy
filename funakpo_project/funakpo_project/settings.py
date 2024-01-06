@@ -27,7 +27,7 @@ SECRET_KEY = config('secret_key', default='django-insecure-ku=@n-w2l^x30t%w#^vl5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://funacademy.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
