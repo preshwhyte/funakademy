@@ -1,0 +1,71 @@
+{%  extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+<title>Funakademy|Gallery</title>
+
+<style>
+
+       
+
+</style>
+
+
+
+<section class="section2">
+    <div class="container">
+        <div class="container-shape">
+
+            <div class="welcome">
+                <h4>
+                    Welcome to Funakpo
+                </h4>
+                <h1>
+                    Where Education Meets <span>Excellence!</span> 
+                </h1>
+                <p class="desktop">
+                    At YourBank, we believe that banking should be more than just transactions. It should be an experience that empowers individuals and businesses to thrive and reach their financial goals. As a trusted financial institution, we are committed to delivering exceptional banking services that go beyond expectations. With a focus on innovation, personalized solutions, and unwavering integrity, we strive to provide the best banking experience for our valued customers. 
+                    Join us on this exciting journey and discover a new level of banking excellence.
+                </p>
+                <p class="mobile-welcome">
+                    At FUNAKPO ACADEMY, we recognize every individual child’s needs 
+                    and effectively work with them to achieve positive results. 
+                </p>
+            </div>
+            <div class="welcome-img">
+                <img src="{% static 'images/image.jpg' %}" alt="">
+            </div>
+            <div class="abstract">
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<section class="gallery">
+<div class="container">
+    <h1>Gallery</h1>
+    <div class="gallery-flex">
+    {% for gallery in gallery %}
+    <div class="gallery-content">
+        <img src="{{gallery.slideImg.url}}" alt="alternative">
+        {%if user.is_authenticated%}
+    
+        <button  class="btn btn-danger"><a href=" {% url 'deletepic' gallery.id %} ">delete</a></button>
+    
+    {%endif%}
+
+
+    </div>
+
+
+ 
+    {%endfor%}
+</div>
+</div>
+</section>
+{%if user.is_authenticated%}
+<div>
+    <button class="btn btn-primary"> <a href=" {% url 'addgal'%} ">Add images</a> </button>
+</div>
+{%endif%}
+{%endblock%}

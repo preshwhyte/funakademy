@@ -1,0 +1,16 @@
+{%  extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<h1>Update page</h1>
+<form action="" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    {{slideform.as_p}}
+    <button type="submit" > Update </button>
+
+
+</form>
+
+
+{%endblock%}

@@ -1,0 +1,48 @@
+{%  extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+<title>Funakademy|Staff</title>
+<style>
+    .staff-grid{
+        overflow: visible;
+        height: auto;
+    }
+    @media screen and (max-width:550px) {
+    
+    .staff-grid{
+        height: auto;
+    overflow: visible;
+  
+    }
+    
+}
+
+
+       
+
+</style>
+<section class="section6">
+    <div class="container">
+        <div class="staff">
+            <h2>
+                Meet the Staff   
+            </h2>
+            {%if user.is_authenticated%}
+            <button class="btn btn-primary"><a href=" {% url 'addstaff' %} ">ADD STAFF</a></button>
+            {%endif%}
+            <div class="staff-grid">
+                {% for staff in staff %}
+                <div>
+                    <img src="{{staff.staffImage.url}}" alt="">
+                    <h4> {{staff.name}} </h4>
+                    <h5>  {{staff.position}} </h5>
+                </div>
+                {%endfor%}
+               
+            </div>
+          
+        </div>
+    </div>
+
+</section>
+{% endblock %}

@@ -1,0 +1,124 @@
+{%  extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+<title>Funakademy|News</title>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+.news{
+    
+    width: 100%;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    font-family: 'Inter', sans-serif;
+}
+
+.news-content{
+    width: 90%;
+    /* height: 691px; */
+    background: rgba(1, 100, 171, 1);
+    color: white;
+    border-radius: 16px;
+    align-content: center;
+    padding: 24px;
+    margin-bottom: 15px;
+  
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+
+}
+.news h1{
+    color:rgba(1, 100, 171, 1);
+
+}
+
+.news-content button p{
+    color:rgba(1, 100, 171, 1);
+    padding: 5px;
+}
+.news-content h3{
+    padding: 5px;
+}
+.news-content img{
+    height: 277px;
+    width: 100%;
+    border-radius: 5%;
+    padding: 5px;
+}
+ .btn a{
+ text-decoration: none;
+ color: white;
+
+}
+@media screen and (max-width:550px) {
+    .section5{
+        width: 100%;
+        margin: auto;
+    }
+    .news-content{
+        width: 100%;
+    }
+    .btn-light{
+        margin: 5px;
+    }
+}
+ 
+ 
+
+</style>
+
+<div>
+    {%if user.is_authenticated%}
+    <button class="btn btn-primary"> <a href=" {% url 'addnews' %} ">ADD NEWS</a> </button>
+    {%endif%}
+</div>
+
+
+
+<section class="section5">
+    <div class="container">
+        <div class="news">
+            <h1>
+                News & Events
+            </h1>
+            <p>
+                Stay updated with the 
+                latest happenings and exciting developments at YourBank through our press releases.
+            </p>
+            <div class="news-grid">
+                {% for news in news%}
+                <div class="news-content">
+                    <img src="{{news.newsImage.url}}" alt="">
+                    <h3>
+                        {{news.title}}
+                    </h3>
+                    <button class="btn btn-light">
+                        {{news.location}}
+                    </button> 
+                    <button class="btn btn-light">
+                        {{news.date}}
+                    </button>
+                    <p>
+                        {{news.info}}
+                    </p>
+                    {%if user.is_authenticated%}
+                   
+                      <button class="btn btn-secondary"><a href=" {% url 'newsupdate' news.id %} ">UPDATE/EDIT INFO {{news.id}}</a></button>
+                    
+                    {%endif%}
+                </div>
+                
+
+
+          
+                {%endfor%}
+
+
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+{%endblock%}

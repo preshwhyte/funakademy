@@ -1,0 +1,273 @@
+{%  extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<title>Funakademy|Home</title>
+<style>
+     
+     @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+.section5{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    max-height: 1550px;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    
+
+}
+@media screen and (max-width:800px) {
+    .section5{
+        max-height: 1610px;
+        margin-top: 30px;
+
+    }
+}
+
+
+.news{
+    
+    
+    
+    max-height:1610px ;
+
+    width: 100%;
+    box-sizing: content-box;
+    margin-bottom: 30px;
+    
+    
+}
+
+.news-content{
+    
+    /* height: 691px; */
+    background: rgba(1, 100, 171, 1);
+    border-radius: 16px;
+    align-content: center;
+    padding: 25px;
+    color: white;
+    width: 95%;
+    margin-bottom: 50px;
+    
+    
+
+}
+.news span{
+    font-size: 20px;
+    float: right;
+    color:rgba(1, 52, 89, 1) ;
+}
+.news h1{
+    color:rgba(1, 100, 171, 1);
+
+}
+.news-content p{
+    margin-top: 10px;
+}
+
+.news-content button p{
+    color:rgba(1, 100, 171, 1);
+    padding: 5px;
+}
+.news-content h3{
+    padding: 5px;
+    margin-bottom: 5px;
+}
+.news-content img{
+    height: 277px;
+    width: 100%;
+    border-radius: 5%;
+
+}
+@media screen and (max-width:550px) {
+
+    .btn-light{
+        margin: 5px;
+    }
+    .news-content{
+        width: 100%;
+    }
+}
+    
+</style>
+
+<section class="carouselBanner">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+
+        <div class="carousel-inner">
+            {% for slide in slider %}
+          <div class="carousel-item active">
+            <img src="{{ slide.slideImg.url}}" class="d-block w-100" alt="jane">  
+          
+          </div>
+           <!-- Take note of this below -->
+          {%endfor%}
+          
+          <!-- <div class="carousel-item">
+            <img src="{% static 'images/bg.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/banner-image.jpg' %}" class="d-block w-100" alt="...">
+          </div> -->
+        </div>
+      </div>
+</section>
+<div style="display: flex; justify-content: space-around;">
+{% for slid in slider%}
+          {%if user.is_authenticated%}
+          <div class="slide-btn">
+            <button class="btn btn-primary"><a href=" {% url 'update' slid.id %} ">UPDATE SLIDE {{slid.id}}</a></button>
+          </div> 
+          {%endif%}
+
+          {% endfor %}
+        </div>
+<section class="mobile">
+    <div class="container">
+        <h1>
+            Funakpo Academy
+        </h1>
+        <p>
+            At FUNAKPO ACADEMY, we recognize every individual
+             child’s needs and effectively work with them to achieve positive results. 
+        </p>
+    </div>
+</section>
+<section class="section2">
+    <div class="container">
+        <div class="container-shape">
+
+            <div class="welcome">
+                <h4>
+                    Welcome to Funakpo
+                </h4>
+                <h1>
+                    Where Education Meets <span>Excellence!</span> 
+                </h1>
+                <p class="desktop">
+                    At YourBank, we believe that banking should be more than just transactions. It should be an experience that empowers individuals and businesses to thrive and reach their financial goals. As a trusted financial institution, we are committed to delivering exceptional banking services that go beyond expectations. With a focus on innovation, personalized solutions, and unwavering integrity, we strive to provide the best banking experience for our valued customers. 
+                    Join us on this exciting journey and discover a new level of banking excellence.
+                </p>
+                <p class="mobile-welcome">
+                    At FUNAKPO ACADEMY, we recognize every individual child’s needs 
+                    and effectively work with them to achieve positive results. 
+                </p>
+            </div>
+            <div class="welcome-img">
+                <img src="{% static 'images/image.jpg' %}" alt="">
+            </div>
+            <div class="abstract">
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<section class="section3">
+<div class="container">
+    <div class="about-frame">
+        <div class="about-image">
+            <img src="{% static 'images/image.jpg' %}" alt="">
+        </div>
+        <div class="about-text">
+            <h1>
+                ABOUT OUR SCHOOL
+            </h1>
+            <p>
+                At FUNAKPO ACADEMY, we recognize every 
+                individual child’s needs and effectively work with them to achieve positive results. 
+            </p>
+            <a href="{% url 'about' %}"><button class=" btn btn-primary"> READ MORE</button></a>
+        </div>
+
+    </div>
+</div>
+</section>
+
+<section class="home-gallery">
+    <div class="container">
+        {% include 'common/slide.html' %} 
+    </div>
+   
+</section>
+
+
+
+<section class="section5">
+    <div class="container">
+        <div class="news">
+            <h1>
+                News & Events  <span><a href="{%url 'news' %}">see all</a></span>
+            </h1>
+            <p>
+                Stay updated with the 
+                latest happenings and exciting developments at YourBank through our press releases.
+            </p>
+            <div class="news-grid">
+                {% for news in news%}
+                <div class="news-content">
+                    <img src="{{news.newsImage.url}}" alt="">
+                    <h3>
+                        {{news.title}}
+                    </h3>
+                    <button class="btn btn-light">
+                        {{news.location}}
+                    </button> 
+                    <button class="btn btn-light">
+                        {{news.date}}
+                    </button>
+                    <p>
+                        {{news.info}}
+                    </p>
+                    
+                </div>
+                {%endfor%}
+
+
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="section6">
+    <div class="container">
+        <div class="staff">
+            <h2>
+                Meet the Staff   <span><a href="{%url 'staff' %}">see all</a></span>
+            </h2>
+            {%if user.is_authenticated%}
+            <button class="btn btn-primary"><a href=" {% url 'addstaff' %} ">ADD STAFF</a></button>
+            {%endif%}
+            <div class="staff-grid">
+                {% for staff in staff %}
+                <div>
+                    <img src="{{staff.staffImage.url}}" alt="">
+                    <h4> {{staff.name}} </h4>
+                    <h5>  {{staff.position}} </h5>
+                </div>
+                {%endfor%}
+               
+            </div>
+          
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

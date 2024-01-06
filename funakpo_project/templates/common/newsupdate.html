@@ -1,0 +1,16 @@
+{%  extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<h1>Edit News</h1>
+<form action="" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    {{newsform.as_p}}
+    <button type="submit"class='btn btn-primary'> Update Events/News</button>
+
+
+</form>
+
+
+{%endblock%}

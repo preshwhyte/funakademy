@@ -1,0 +1,14 @@
+{%  extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{staffform.as_p}}
+    <button type="submit">ADD STAFF</button>
+
+
+
+</form>
+
+{%endblock%}
