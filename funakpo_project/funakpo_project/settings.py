@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 import os
 from decouple import config
@@ -84,6 +84,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+DATABASES['default']=dj_database_url.parse('postgres://fun_akada_pg_user:PKk7wCY4aFZy30OkaNtLHhX5eqNCUnnO@dpg-cmckqf6d3nmc73dc3of0-a.oregon-postgres.render.com/fun_akada_pg')
 
 
 # Password validation
